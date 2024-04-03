@@ -49,7 +49,6 @@ input:focus{
 }
 #total::before{
     content: "Total";
-    
 }
 button{
     width: 100%;
@@ -68,6 +67,7 @@ button:hover{
     background: rgb(28, 28, 244);
     letter-spacing: 1px;
     border-style: none;
+    font-size: 14px;
 
 }
 .btnSearch{

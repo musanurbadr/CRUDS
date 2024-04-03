@@ -35,10 +35,14 @@ function getTotal()
     }
 }
 
-
+let dataPro ;
+if(localStorage.product != null){
+    dataPro= JSON.parse(localStorage.product)
+}else{
+    dataPro = [];
+}
 ////create produt 
-let datapro = [];
-
+//  
 submit.onclick = function (){
     let newPro = {
         title:title.value,
@@ -47,7 +51,32 @@ submit.onclick = function (){
         ads:ads.value,
         discount:discount.value,
         total:total.value,
-        cangerty:cangerty.value
+        cangerty:cangerty.value,
     }
-    console.log(newPro)
+    dataPro.push(newPro);
+    /////save localstoge
+    localStorage.setItem('product' , JSON.stringify(dataPro))
+
+    clearDate()
+}
+//clear input 
+function clearDate() {
+    title.value = '' ;
+    price.value = ''  ;
+    taxes.value = '';
+    ads.value = '';
+    total.value = '';
+    count.valuea = '';
+    cangerty.value = ' '; 
+}
+
+//Read 
+function showData(){
+    let table = ""
+    for (let i = 0 ; i < dataPro.length ; i++){
+        table = dataPro[i];
+        console.log(table)
+    }
+    // document.getElementById ('tbody').innerHTML = table
+
 }
