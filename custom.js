@@ -17,7 +17,7 @@ let discount = document.getElementById('discount');
 let total= document.getElementById('total');
 let count = document.getElementById('count');
 let cangerty = document.getElementById('cangerty');
-let submit = document.getElementById('submit');
+let submit = document.getElementById('submit');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
 
 
@@ -51,13 +51,21 @@ submit.onclick = function (){
         ads:ads.value,
         discount:discount.value,
         total:total.value,
+        count:count.value,
         cangerty:cangerty.value,
     }
-    dataPro.push(newPro);
+    if (newPro.count > 1){
+        for (let i = 0 ; i < newPro.count;i++){
+            dataPro.push(newPro);
+        }
+    }else{
+        dataPro.push(newPro);
+    }
     /////save localstoge
     localStorage.setItem('product' , JSON.stringify(dataPro))
 
     clearDate()
+    showData()
 }
 //clear input 
 function clearDate() {
@@ -72,11 +80,54 @@ function clearDate() {
 
 //Read 
 function showData(){
-    let table = ""
+    let table = "";
     for (let i = 0 ; i < dataPro.length ; i++){
-        table = dataPro[i];
-        console.log(table)
-    }
-    // document.getElementById ('tbody').innerHTML = table
+        table += `
+        <tr>
+            <td>${i}</td>
+            <td>${dataPro[i].title}</td>
+            <td>${dataPro[i].price}</td>
+            <td>${dataPro[i].taxes}</td>
+            <td>${dataPro[i].ads}</td>
+            <td>${dataPro[i].discount}</td>
+            <td>${dataPro[i].total}</td>
+            <td>${dataPro[i].cangerty}</td>      
+            <td><button onclick = "updateData()" id="update">update</button></td>
+            <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
+        </tr>
+        `        
+        }
+    document.getElementById ('tbody').innerHTML = table;
+    let btnDalete= document.getElementById("deletAll"); 
+    if(dataPro.length > 0 ){
+        btnDalete.innerHTML = `
+        <button onclick="deletAll()">delete All(${dataPro.length})</button>
+        `
+    }else{
+        btnDalete.innerHTML = '' ;
 
+    }
+
+}
+showData()
+
+
+///delet 
+function deleteData(i){
+    dataPro.splice(i,1);
+    localStorage.product = JSON.stringify(dataPro);
+        showData()
+    }
+function deletAll(){
+    localStorage.clear()
+    dataPro.splice(0)
+    showData()
+
+}
+
+////count 
+
+//Updet
+function updateData(i){
+    title.value = dataPro[i].title;
 }
