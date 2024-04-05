@@ -14,7 +14,7 @@
         </div>
 
         <div class="inputs">
-            <input placeholder="title" type="text" id="title">
+            <input onkeyup="seacthDate()" placeholder="title" type="text" id="title">
             <div class="price">
                 <input onkeyup="getTotal()" type="number" id="price" placeholder="price">
                 <input onkeyup="getTotal()" type="number" id="taxes" placeholder="taxes">
@@ -29,13 +29,13 @@
 
         <div class="outputs">
             <div class="searchBlock">
-                <input type="text" placeholder="serch" id="serch">
+                <input onkeyup="searchDate(this.value)" type="text" placeholder="serch" id="search">
                 <div class="btnSearch">
-                    <button id="serchTitle">seatch By Title </button>
-                    <button id="serchTitle">seatch By Category </button>
+                    <button onclick="getSearchMood(this.id)" id="serchTitle">seatch By Title </button>
+                    <button onclick="getSearchMood(this.id)" id="serchCategory">seatch By Category </button>
                 </div>
             </div>
-            <div id="deletAll">
+            <div id="deleteAll">
 
             </div>
             <table>
